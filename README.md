@@ -1,6 +1,6 @@
 # airflow-dag-examples
 This repository has some examples of Airflow DAGs and dockerized Airflow based on docker-airflow by Puckel.
-You can run Airflow DAG examples on your local docker.
+You can run the DAG examples on your local docker.
 
 ## Requirements
 
