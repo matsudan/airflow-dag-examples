@@ -17,27 +17,22 @@
 # specific language governing permissions and limitations
 # under the License.
 
-
-from datetime import timedelta
-
-import airflow
 from airflow import DAG
 from airflow.models import Variable
+from airflow.utils.dates import days_ago
 from airflow.contrib.operators.sns_publish_operator import SnsPublishOperator
 
 config = Variable.get("sns_publish_config", deserialize_json=True)
 
 default_args = {
     "owner": "example",
-    "provide_context": True,
+    "start_date": days_ago(2),
 }
 
 with DAG(
         dag_id="sns_publish",
         default_args=default_args,
-        start_date=airflow.utils.dates.parse_execution_date("2020-06-01"),
         schedule_interval="@once",
-        dagrun_timeout=timedelta(minutes=120),
 ) as dag:
     publish = SnsPublishOperator(
         task_id="publish_test_topic",
