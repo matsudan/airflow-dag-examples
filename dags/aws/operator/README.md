@@ -7,6 +7,30 @@
 }
 ```
 
+### ecs_config
+```json
+{
+    "task_definition": "sample-def-mtd:2",
+    "cluster": "airflow-task-proc",
+    "overrides": {
+        "containerOverrides": [
+            {
+                "name": "sample-con",
+                "cpu": 256,
+                "memory": 1024
+            }
+        ]
+    },
+    "launch_type": "FARGATE",
+    "network_configuration": {
+        "awsvpcConfiguration": {
+            "subnets": ["subnet-xxxxxxxxxx"],
+            "securityGroups": ["sg-xxxxxxx"]
+        }
+    }
+}
+```
+
 ## Connection
 
 ### aws_default
