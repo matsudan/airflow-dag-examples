@@ -1,6 +1,6 @@
 # airflow-dag-examples
-This repository has some examples of Airflow DAGs and dockerized Airflow based on [docker-airflow](https://github.com/puckel/docker-airflow).
-You can run the DAG examples on your local docker.
+
+This repository has some examples of Airflow DAGs. You can run the DAG examples on your local docker. The guide to quickly start Airflow in Docker can be found [here](https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html).
 The DAG examples can be found in the `dags` directory.
 
 ## Requirements
@@ -10,9 +10,9 @@ The DAG examples can be found in the `dags` directory.
 
 ## Usage
 
-1. Launch Airflow with LocalExecutor
+1. Launch Airflow
 ```console
-docker-compose up
+docker compose up
 ```
 
 2. Access the UI link `localhost:8080`
