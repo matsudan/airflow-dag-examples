@@ -16,34 +16,26 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-
-from datetime import timedelta
+import os
 
 from airflow import DAG
 from airflow.models import Variable
+from airflow.providers.amazon.aws.operators.sns import SnsPublishOperator
 from airflow.utils.dates import days_ago
-from airflow.contrib.operators.ecs_operator import ECSOperator
 
-config = Variable.get("ecs_config", deserialize_json=True)
+config = Variable.get("sns_publish_config", deserialize_json=True)
+dag_id = os.path.basename(__file__).replace(".py", "")
 
 default_args = {
     "owner": "example",
     "start_date": days_ago(2),
-    "retries": 1,
-    "retry_delay": timedelta(minutes=60),
-    "retry_exponential_backoff": True,
 }
 
 with DAG(
-        dag_id="ecs",
-        default_args=default_args,
-        schedule_interval="@once",
+    dag_id=dag_id,
+    default_args=default_args,
+    schedule_interval=None,
 ) as dag:
-    ecs_task = ECSOperator(
-        task_id="ecs_task",
-        task_definition=config["task_definition"],
-        cluster=config["cluster"],
-        overrides=config["overrides"],
-        launch_type=config["launch_type"],
-        network_configuration=config["network_configuration"]
+    publish = SnsPublishOperator(
+        task_id="publish_test_topic", target_arn=config["topic_arn"], message="TEST"
     )

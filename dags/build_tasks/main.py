@@ -18,18 +18,11 @@
 # under the License.
 
 from airflow import DAG
-from airflow.utils.dates import days_ago
 from airflow.operators.dummy_operator import DummyOperator
-
-from build_tasks.sub.sw1 import (
-    build_tasks as sw1_build_tasks,
-)
-from build_tasks.sub.sw2 import (
-    build_tasks as sw2_build_tasks,
-)
-from build_tasks.sub.sw3 import (
-    build_tasks as sw3_build_tasks,
-)
+from airflow.utils.dates import days_ago
+from build_tasks.sub.sw1 import build_tasks as sw1_build_tasks
+from build_tasks.sub.sw2 import build_tasks as sw2_build_tasks
+from build_tasks.sub.sw3 import build_tasks as sw3_build_tasks
 
 default_args = {
     "owner": "example",
