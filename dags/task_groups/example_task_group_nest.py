@@ -32,9 +32,9 @@ default_args = {
 }
 
 with DAG(
-        dag_id=dag_id,
-        default_args=default_args,
-        schedule_interval=None,
+    dag_id=dag_id,
+    default_args=default_args,
+    schedule_interval=None,
 ) as dag:
     start = DummyOperator(task_id="start")
 
