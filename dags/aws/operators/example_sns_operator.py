@@ -37,5 +37,7 @@ with DAG(
     schedule_interval=None,
 ) as dag:
     publish = SnsPublishOperator(
-        task_id="publish_test_topic", target_arn=config["topic_arn"], message="TEST"
+        task_id="publish_test_topic",
+        target_arn=config["topic_arn"],
+        message="TEST",
     )
