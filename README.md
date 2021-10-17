@@ -7,12 +7,3 @@ The DAG examples can be found in the `dags` directory.
 
 * docker
 * docker-compose
-
-## Usage
-
-1. Launch Airflow
-```console
-docker compose up
-```
-
-2. Access the UI link `localhost:8080`
