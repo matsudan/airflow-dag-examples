@@ -20,8 +20,8 @@ import os
 from datetime import timedelta
 
 from airflow import DAG
-from airflow.providers.amazon.aws.operators.ecs import ECSOperator
 from airflow.models import Variable
+from airflow.providers.amazon.aws.operators.ecs import ECSOperator
 from airflow.utils.dates import days_ago
 
 config = Variable.get("ecs_config", deserialize_json=True)
