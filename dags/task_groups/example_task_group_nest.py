@@ -40,28 +40,22 @@ with DAG(
 
     with TaskGroup(group_id="group1") as tg1:
         t1 = DummyOperator(task_id="task1")
-        t2 = DummyOperator(task_id="task2")
-
-        t1 >> t2
-
-    with TaskGroup(group_id="group2") as tg2:
-        t3 = DummyOperator(task_id="task3")
 
         # Define sub task group
-        with TaskGroup(group_id="group2_1") as tg2_1:
-            t4 = DummyOperator(task_id="task4")
-            t5 = DummyOperator(task_id="task5")
+        with TaskGroup(group_id="group1_1") as tg1_1:
+            t2 = DummyOperator(task_id="task2")
+            t3 = DummyOperator(task_id="task3")
 
-            t4 >> t5
+            t2 >> t3
 
-        with TaskGroup(group_id="group3_1") as tg3_1:
+        with TaskGroup(group_id="group1_2") as tg1_2:
             for i in range(1, 3):
-                tn = DummyOperator(task_id=f"task_tg3_{i}")
+                tn = DummyOperator(task_id=f"task_tg1_2_{i}")
 
-            t5 >> tn
+            t3 >> tn
 
-        t3 >> tg2_1 >> tg3_1
+        t1 >> tg1_1 >> tg1_2
 
     end = DummyOperator(task_id="end")
 
-    start >> tg1 >> tg2 >> end
+    start >> tg1 >> end

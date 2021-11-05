@@ -5,4 +5,4 @@
 
 ####`example_task_group_nest`
 
-[![](https://user-images.githubusercontent.com/43136241/140560407-c5661bb1-eb9d-4bd2-9326-e57f6fabaeaa.png)](https://user-images.githubusercontent.com/43136241/140560407-c5661bb1-eb9d-4bd2-9326-e57f6fabaeaa.png)
+[![](https://user-images.githubusercontent.com/43136241/140561640-9fdf6fb4-4ad8-4a71-9559-341fdc5a40a1.png)](https://user-images.githubusercontent.com/43136241/140561640-9fdf6fb4-4ad8-4a71-9559-341fdc5a40a1.png)
