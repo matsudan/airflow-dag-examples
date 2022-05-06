@@ -35,7 +35,7 @@ default_args = {
     start_date=datetime(2022, 5, 1),
     tags=["example"],
 )
-def example_task_flow():
+def example_taskflow_api():
 
     # 2. Define tasks using the @task decorator
     @task()
@@ -71,4 +71,4 @@ def example_task_flow():
     load_multiple(order_summary["multi_value"])
 
 
-dag = example_task_flow()
+dag = example_taskflow_api()
