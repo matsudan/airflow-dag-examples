@@ -18,8 +18,8 @@
 # under the License.
 
 import os
-from datetime import datetime
 
+import pendulum
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.empty import EmptyOperator
@@ -28,7 +28,7 @@ dag_id = os.path.basename(__file__).replace(".py", "")
 
 default_args = {
     "owner": "example",
-    "start_date": datetime(2022, 5, 1),
+    "start_date": pendulum.datetime(2022, 5, 1),
 }
 
 with DAG(
@@ -37,15 +37,15 @@ with DAG(
     schedule_interval=None,
 ) as dag:
 
-    t1 = EmptyOperator(task_id="task1")
+    start = EmptyOperator(task_id="start")
 
-    t2_1 = BashOperator.partial(task_id="dtm_task2_1").expand(
+    t1 = BashOperator.partial(task_id="dtm_task").expand(
         bash_command=["echo 1", "echo 2"]
     )
 
     # This task will be skipped.
-    t2_2 = BashOperator.partial(task_id="dtm_task2_2").expand(bash_command=[])
+    t2 = BashOperator.partial(task_id="dtm_skip_task").expand(bash_command=[])
 
-    t3 = EmptyOperator(task_id="task3", trigger_rule="none_failed")
+    end = EmptyOperator(task_id="end", trigger_rule="none_failed")
 
-    t1 >> [t2_1, t2_2] >> t3
+    start >> t1 >> t2 >> end
