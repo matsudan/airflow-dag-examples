@@ -17,9 +17,9 @@
 # specific language governing permissions and limitations
 # under the License.
 
+import pendulum
 from airflow import DAG
-from airflow.operators.dummy_operator import DummyOperator
-from airflow.utils.dates import days_ago
+from airflow.operators.empty import EmptyOperator
 from build_tasks.sub.sw1 import build_tasks as sw1_build_tasks
 from build_tasks.sub.sw2 import build_tasks as sw2_build_tasks
 from build_tasks.sub.sw3 import build_tasks as sw3_build_tasks
@@ -27,15 +27,16 @@ from build_tasks.sub.sw3 import build_tasks as sw3_build_tasks
 default_args = {
     "owner": "example",
     "provide_context": True,
-    "start_date": days_ago(2),
 }
 
 with DAG(
     dag_id="build_tasks_main",
+    start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
     default_args=default_args,
     schedule_interval="@once",
+    tags=["example"],
 ) as dag:
-    start = DummyOperator(task_id="start")
+    start = EmptyOperator(task_id="start")
 
     start_sw1, end_sw1 = sw1_build_tasks(dag)
     start_sw2, end_sw2 = sw2_build_tasks(dag)
