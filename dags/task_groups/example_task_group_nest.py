@@ -19,43 +19,39 @@
 
 import os
 
+import pendulum
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
-from airflow.utils.dates import days_ago
+from airflow.operators.empty import EmptyOperator
 from airflow.utils.task_group import TaskGroup
 
 dag_id = os.path.basename(__file__).replace(".py", "")
 
-default_args = {
-    "owner": "example",
-    "start_date": days_ago(2),
-}
-
 with DAG(
     dag_id=dag_id,
-    default_args=default_args,
+    start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
     schedule_interval=None,
+    tags=["example"],
 ) as dag:
-    start = DummyOperator(task_id="start")
+    start = EmptyOperator(task_id="start")
 
     with TaskGroup(group_id="group1") as tg1:
-        t1 = DummyOperator(task_id="task1")
+        t1 = EmptyOperator(task_id="task1")
 
         # Define sub task group
         with TaskGroup(group_id="group1_1") as tg1_1:
-            t2 = DummyOperator(task_id="task2")
-            t3 = DummyOperator(task_id="task3")
+            t2 = EmptyOperator(task_id="task2")
+            t3 = EmptyOperator(task_id="task3")
 
             t2 >> t3
 
         with TaskGroup(group_id="group1_2") as tg1_2:
             for i in range(1, 3):
-                tn = DummyOperator(task_id=f"task_tg1_2_{i}")
+                tn = EmptyOperator(task_id=f"task_tg1_2_{i}")
 
             t3 >> tn
 
         t1 >> tg1_1 >> tg1_2
 
-    end = DummyOperator(task_id="end")
+    end = EmptyOperator(task_id="end")
 
     start >> tg1 >> end
