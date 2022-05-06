@@ -18,21 +18,16 @@
 # under the License.
 
 import json
-from datetime import datetime
 from typing import Dict
 
+import pendulum
 from airflow.decorators import dag, task
-
-default_args = {
-    "owner": "example",
-}
 
 
 # 1. Define a dag using the @dag decorator
 @dag(
-    default_args=default_args,
     schedule_interval=None,
-    start_date=datetime(2022, 5, 1),
+    start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
     tags=["example"],
 )
 def example_taskflow_api():
