@@ -26,15 +26,11 @@ from airflow.operators.empty import EmptyOperator
 
 dag_id = os.path.basename(__file__).replace(".py", "")
 
-default_args = {
-    "owner": "example",
-    "start_date": pendulum.datetime(2022, 5, 1),
-}
-
 with DAG(
     dag_id=dag_id,
-    default_args=default_args,
+    start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
     schedule_interval=None,
+    tags=["example"],
 ) as dag:
 
     start = EmptyOperator(task_id="start")
