@@ -6,4 +6,3 @@ The DAG examples can be found in the `dags` directory.
 ## Requirements
 
 * docker
-* docker-compose
