@@ -66,7 +66,6 @@ def sla_callback(
     tags=["example"],
 )
 def example_sla_miss_slack_notification():
-
     # An SLA miss occurs in this `sleep20_sla_miss` task, which is notified to slack.
     @task(sla=datetime.timedelta(seconds=10))
     def sleep20_sla_miss():

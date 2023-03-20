@@ -31,7 +31,6 @@ from airflow.decorators import dag, task
     tags=["example"],
 )
 def example_taskflow_api():
-
     # 2. Define tasks using the @task decorator
     @task()
     def extract() -> Dict[str, int]:

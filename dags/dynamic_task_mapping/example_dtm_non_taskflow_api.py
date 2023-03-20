@@ -32,7 +32,6 @@ with DAG(
     schedule_interval=None,
     tags=["example"],
 ) as dag:
-
     start = EmptyOperator(task_id="start")
 
     t1 = BashOperator.partial(task_id="dtm_task").expand(
