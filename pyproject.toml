@@ -1,5 +1,8 @@
 [tool.black]
 line-length = 88
 
-[tool.isort]
-profile = "black"
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+fix = true
+select = ["F", "E", "W", "I", "Q"]
