@@ -3,4 +3,4 @@ Please see [here](https://airflow.apache.org/docs/apache-airflow/stable/authorin
 
 #### example_producer_consumer
 
-![data_aware_scheduling](https://user-images.githubusercontent.com/43136241/226205051-c57f5533-b7cb-4530-8f73-1b637404d6a6.png)
+![data_aware_scheduling](https://user-images.githubusercontent.com/43136241/226323515-75acbc97-9039-46bf-b1c6-cca78ac3cda2.png)
