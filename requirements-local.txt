@@ -1,4 +1,4 @@
-apache-airflow==2.5.2
+apache-airflow==2.6.3
 apache-airflow-providers-amazon==7.3.0
 black==23.1.0
 ruff==0.0.257
