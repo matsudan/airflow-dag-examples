@@ -44,8 +44,8 @@ with DAG(
 
     start = EmptyOperator(task_id="start")
     end = EmptyOperator(task_id="end", trigger_rule="none_failed_min_one_success")
-    for i in range(5):
-        # A task sensing sleep_no4 task that sleeps for 256 seconds exceeds the sensor timeout,
+    for i in range(6):
+        # A task sensing sleep_no5 task that sleeps for 243 seconds exceeds the sensor timeout,
         # so the task is soft_fail.
         t1 = ExternalTaskSensor(
             task_id=f"sensor_no{i}",
@@ -74,8 +74,8 @@ with DAG(
         trigger_dag_id="example_external_task_sensor",
     )
     end = EmptyOperator(task_id="end")
-    for i in range(5):
-        sleep_time = pow(4, i)
+    for i in range(6):
+        sleep_time = pow(3, i)
         t1 = BashOperator(task_id=f"sleep_no{i}", bash_command=f"sleep {sleep_time}")
         trigger >> t1 >> end
     start >> trigger
