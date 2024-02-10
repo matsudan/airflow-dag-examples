@@ -1,5 +1,5 @@
 apache-airflow==2.7.3
-apache-airflow-providers-amazon==7.3.0
-apache-airflow-providers-google==10.4.0
-black==23.1.0
-ruff==0.0.280
+apache-airflow-providers-amazon==8.7.1
+apache-airflow-providers-google==10.13.0
+black==24.1.0
+ruff==0.2.1
