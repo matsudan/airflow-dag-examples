@@ -16,56 +16,23 @@
 # under the License.
 
 import datetime
-import json
 import time
-from typing import Any, List
 
 import pendulum
-from airflow import DAG
 from airflow.decorators import dag, task
-from airflow.providers.http.operators.http import SimpleHttpOperator
-
-
-def send_slack_notification(message: str, **context: Any):
-    slack_notification = SimpleHttpOperator(
-        task_id="sla_miss_notification",
-        http_conn_id="slack_conn",  # The content of this connection is described in `sla/README.md`.
-        endpoint="<Set your Slack Webhook URL>",  # e.g., "services/XXXXX/XXXXX/XXXXX"
-        method="POST",
-        data=message,
-    )
-
-    slack_notification.execute(context)
-
-
-def sla_callback(
-    dag: DAG, task_list: str, blocking_task_list: str, slas: List, blocking_tis: List
-):
-    text = (
-        "SLA was missed on dag_id={dag_id}, "
-        "task_id={task_id} on execution_date={execution_date}, "
-        "task_instance={task_instance}".format(
-            dag_id=dag.dag_id,
-            task_id=slas[0].task_id,
-            execution_date=slas[0].execution_date,
-            task_instance=blocking_tis[0],
-        )
-    )
-
-    message = json.dumps({"text": text})
-    send_slack_notification(message)
+from libs.slack import post_sla_miss_to_slack
 
 
 @dag(
     start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
     schedule_interval="*/2 * * * *",
     catchup=False,
-    sla_miss_callback=sla_callback,
+    sla_miss_callback=post_sla_miss_to_slack,
     tags=["example"],
 )
 def example_sla_miss_slack_notification():
     # An SLA miss occurs in this `sleep20_sla_miss` task, which is notified to slack.
-    @task(sla=datetime.timedelta(seconds=10))
+    @task(sla=datetime.timedelta(seconds=5))
     def sleep20_sla_miss():
         time.sleep(20)
 
