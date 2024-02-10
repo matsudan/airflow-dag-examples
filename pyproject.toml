@@ -3,6 +3,6 @@ line-length = 88
 
 [tool.ruff]
 line-length = 88
-target-version = "py38"
+target-version = "py311"
 fix = true
 select = ["F", "E", "W", "I", "Q"]
