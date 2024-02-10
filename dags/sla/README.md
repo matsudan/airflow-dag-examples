@@ -1,14 +1,5 @@
 ## SLAs
 
-### Connection
+### Requirements
 
-| Command         | Description     |
-|-----------------|-----------------|
-| Connection Id   | slack_conn      |
-| Connection Type | HTTP            |
-| HOST            | hooks.slack.com |
-| Schema          | https           |
-| Login           |                 |
-| Password        |                 |
-| Port            |                 |
-| Extra           |                 |
+- [slack Variable](../../config/slack.json) needs to be set to send notifications to your slack channel.
