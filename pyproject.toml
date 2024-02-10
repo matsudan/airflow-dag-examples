@@ -1,8 +1,14 @@
-[tool.black]
-line-length = 88
-
 [tool.ruff]
 line-length = 88
+indent-width = 4
 target-version = "py311"
-fix = true
+
+[tool.ruff.lint]
 select = ["F", "E", "W", "I", "Q"]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
