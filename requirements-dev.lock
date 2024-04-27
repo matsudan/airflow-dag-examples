@@ -25,6 +25,7 @@ anyio==4.3.0
     # via httpx
 apache-airflow==2.9.0
     # via airflow-dag-examples
+    # via apache-airflow-providers-amazon
     # via apache-airflow-providers-common-io
     # via apache-airflow-providers-common-sql
     # via apache-airflow-providers-fab
@@ -34,20 +35,24 @@ apache-airflow==2.9.0
     # via apache-airflow-providers-imap
     # via apache-airflow-providers-smtp
     # via apache-airflow-providers-sqlite
+apache-airflow-providers-amazon==8.19.0
+    # via airflow-dag-examples
 apache-airflow-providers-common-io==1.3.1
     # via apache-airflow
 apache-airflow-providers-common-sql==1.12.0
     # via apache-airflow
+    # via apache-airflow-providers-amazon
     # via apache-airflow-providers-google
     # via apache-airflow-providers-sqlite
 apache-airflow-providers-fab==1.0.4
     # via apache-airflow
 apache-airflow-providers-ftp==3.8.0
     # via apache-airflow
-apache-airflow-providers-google==10.17.0
+apache-airflow-providers-google==10.16.0
     # via airflow-dag-examples
 apache-airflow-providers-http==4.10.1
     # via apache-airflow
+    # via apache-airflow-providers-amazon
 apache-airflow-providers-imap==3.5.0
     # via apache-airflow
 apache-airflow-providers-smtp==1.6.1
@@ -60,8 +65,11 @@ argcomplete==3.3.0
     # via apache-airflow
 asgiref==3.8.1
     # via apache-airflow
+    # via apache-airflow-providers-amazon
     # via apache-airflow-providers-google
     # via apache-airflow-providers-http
+asn1crypto==1.5.1
+    # via scramp
 attrs==23.2.0
     # via aiohttp
     # via apache-airflow
@@ -73,8 +81,21 @@ babel==2.14.0
     # via flask-babel
 backoff==2.2.1
     # via gcloud-aio-auth
+beautifulsoup4==4.12.3
+    # via redshift-connector
 blinker==1.7.0
     # via apache-airflow
+boto3==1.34.93
+    # via apache-airflow-providers-amazon
+    # via pyathena
+    # via redshift-connector
+    # via watchtower
+botocore==1.34.93
+    # via apache-airflow-providers-amazon
+    # via boto3
+    # via pyathena
+    # via redshift-connector
+    # via s3transfer
 cachelib==0.9.0
     # via flask-caching
     # via flask-session
@@ -173,6 +194,7 @@ frozenlist==1.4.1
 fsspec==2024.3.1
     # via apache-airflow
     # via gcsfs
+    # via pyathena
     # via universal-pathlib
 gcloud-aio-auth==4.2.3
     # via apache-airflow-providers-google
@@ -305,7 +327,6 @@ google-cloud-automl==2.13.3
 google-cloud-batch==0.17.18
     # via apache-airflow-providers-google
 google-cloud-bigquery==3.21.0
-    # via apache-airflow-providers-google
     # via google-cloud-aiplatform
     # via pandas-gbq
     # via sqlalchemy-bigquery
@@ -461,6 +482,7 @@ importlib-metadata==7.0.0
 importlib-resources==6.4.0
     # via limits
 inflection==0.5.1
+    # via apache-airflow-providers-amazon
     # via connexion
 itsdangerous==2.2.0
     # via apache-airflow
@@ -472,8 +494,13 @@ jinja2==3.1.3
     # via flask
     # via flask-babel
     # via python-nvd3
+jmespath==1.0.1
+    # via boto3
+    # via botocore
 json-merge-patch==0.2
     # via apache-airflow-providers-google
+jsonpath-ng==1.6.1
+    # via apache-airflow-providers-amazon
 jsonschema==4.21.1
     # via apache-airflow
     # via connexion
@@ -491,6 +518,8 @@ lockfile==0.12.2
     # via python-daemon
 looker-sdk==24.4.0
     # via apache-airflow-providers-google
+lxml==5.2.1
+    # via redshift-connector
 mako==1.3.3
     # via alembic
 markdown-it-py==3.0.0
@@ -565,7 +594,9 @@ packaging==24.0
     # via marshmallow
     # via marshmallow-sqlalchemy
     # via pandas-gbq
+    # via redshift-connector
     # via sqlalchemy-bigquery
+    # via sqlalchemy-redshift
 pandas==2.1.4
     # via apache-airflow-providers-google
     # via db-dtypes
@@ -578,6 +609,8 @@ pendulum==3.0.0
     # via apache-airflow
 pluggy==1.5.0
     # via apache-airflow
+ply==3.11
+    # via jsonpath-ng
 prison==0.2.1
     # via flask-appbuilder
 proto-plus==1.23.0
@@ -680,6 +713,8 @@ pyasn1==0.5.1
 pyasn1-modules==0.3.0
     # via gcloud-aio-storage
     # via google-auth
+pyathena==3.7.0
+    # via apache-airflow-providers-amazon
 pycparser==2.22
     # via cffi
 pydantic==2.7.1
@@ -704,6 +739,7 @@ python-daemon==3.0.1
     # via apache-airflow
 python-dateutil==2.9.0.post0
     # via apache-airflow
+    # via botocore
     # via croniter
     # via flask-appbuilder
     # via google-cloud-bigquery
@@ -714,17 +750,19 @@ python-nvd3==0.16.0
     # via apache-airflow
 python-slugify==8.0.4
     # via apache-airflow
-    # via apache-airflow-providers-google
     # via python-nvd3
 pytz==2024.1
     # via croniter
     # via flask-babel
     # via pandas
+    # via redshift-connector
 pyyaml==6.0.1
     # via apispec
     # via clickclick
     # via connexion
     # via google-ads
+redshift-connector==2.1.1
+    # via apache-airflow-providers-amazon
 referencing==0.35.0
     # via jsonschema
     # via jsonschema-specifications
@@ -738,6 +776,7 @@ requests==2.31.0
     # via google-cloud-storage
     # via looker-sdk
     # via opentelemetry-exporter-otlp-proto-http
+    # via redshift-connector
     # via requests-oauthlib
     # via requests-toolbelt
 requests-oauthlib==2.0.0
@@ -759,6 +798,10 @@ rsa==4.9
     # via gcloud-aio-storage
     # via google-auth
 ruff==0.4.2
+s3transfer==0.10.1
+    # via boto3
+scramp==1.4.5
+    # via redshift-connector
 setproctitle==1.3.3
     # via apache-airflow
 setuptools==66.1.1
@@ -766,6 +809,7 @@ setuptools==66.1.1
     # via pandas-gbq
     # via pydata-google-auth
     # via python-daemon
+    # via redshift-connector
 shapely==2.0.4
     # via google-cloud-aiplatform
 six==1.16.0
@@ -775,6 +819,8 @@ six==1.16.0
 sniffio==1.3.1
     # via anyio
     # via httpx
+soupsieve==2.5
+    # via beautifulsoup4
 sqlalchemy==1.4.52
     # via alembic
     # via apache-airflow
@@ -783,12 +829,15 @@ sqlalchemy==1.4.52
     # via marshmallow-sqlalchemy
     # via sqlalchemy-bigquery
     # via sqlalchemy-jsonfield
+    # via sqlalchemy-redshift
     # via sqlalchemy-spanner
     # via sqlalchemy-utils
 sqlalchemy-bigquery==1.11.0
     # via apache-airflow-providers-google
 sqlalchemy-jsonfield==1.0.2
     # via apache-airflow
+sqlalchemy-redshift==0.8.14
+    # via apache-airflow-providers-amazon
 sqlalchemy-spanner==1.7.0
     # via apache-airflow-providers-google
 sqlalchemy-utils==0.41.2
@@ -800,6 +849,7 @@ tabulate==0.9.0
     # via apache-airflow
 tenacity==8.2.3
     # via apache-airflow
+    # via pyathena
 termcolor==2.4.0
     # via apache-airflow
 text-unidecode==1.3
@@ -826,7 +876,10 @@ universal-pathlib==0.2.2
 uritemplate==4.1.1
     # via google-api-python-client
 urllib3==2.2.1
+    # via botocore
     # via requests
+watchtower==3.2.0
+    # via apache-airflow-providers-amazon
 werkzeug==2.2.3
     # via apache-airflow
     # via connexion
