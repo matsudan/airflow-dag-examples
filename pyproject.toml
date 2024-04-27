@@ -1,7 +1,27 @@
+[project]
+name = "airflow-dag-examples"
+version = "0.1.0"
+description = "Airflow dag examples"
+authors = [
+    { name = "matsuda", email = "daaamatsun@gmail.com" }
+]
+dependencies = [
+    "apache-airflow>=2.9.0",
+    "apache-airflow-providers-google>=10.17.0",
+]
+readme = "README.md"
+requires-python = ">= 3.12"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "ruff>=0.4.2",
+]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint]
 select = ["F", "E", "W", "I", "Q"]
