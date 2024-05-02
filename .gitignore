@@ -96,3 +96,6 @@ logs/
 
 # ruff
 .ruff_cache
+
+# aws localstack
+dags/aws/volume/
