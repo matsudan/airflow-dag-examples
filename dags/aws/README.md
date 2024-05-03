@@ -24,24 +24,17 @@ aws --endpoint-url=http://localhost:4566 sns create-topic --name <topic>
 
 #### Variables
 
-- sns_publish_config
-
-```json
-{
-  "topic_arn": "YOUR_TOPIC_ARN"
-}
-```
+- [aws](../../config/aws.json)
 
 #### Connection
 
 - aws_default
 
-| Command | Description |
-| --- | --- |
-| Conn Type | Amazon Web Service |
-| HOST | |
-| Schema | |
-| Login | |
-| Password| |
-| Port| |
-| Extra | {"aws_access_key_id": "YOUR_AWS_ACCESS_KEY", "aws_secret_access_key": "YOUR_SECRET_ACCESS_KEY", "region_name": "YOUR_REGION"} |
+| Command               | Description                                                                                                                                                             |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Connection Id         | aws_default                                                                                                                                                             |
+| Connection Type       | Amazon Web Service                                                                                                                                                      |
+| Description           |                                                                                                                                                                         |
+| AWS Access Key ID     |                                                                                                                                                                         |
+| AWS Secret Access Key |                                                                                                                                                                         |
+| Extra                 | {"aws_access_key_id": "YOUR_AWS_ACCESS_KEY", "aws_secret_access_key": "YOUR_SECRET_ACCESS_KEY", "region_name": "YOUR_REGION", "endpoint_url": "http://localstack:4566"} |
