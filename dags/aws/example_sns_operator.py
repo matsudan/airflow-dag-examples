@@ -21,7 +21,6 @@ from airflow.models import Variable
 from airflow.providers.amazon.aws.operators.sns import SnsPublishOperator
 from airflow.utils.dates import days_ago
 
-config = Variable.get("sns_publish_config", deserialize_json=True)
 dag_id = os.path.basename(__file__).replace(".py", "")
 
 default_args = {
@@ -34,8 +33,10 @@ with DAG(
     default_args=default_args,
     schedule_interval=None,
 ) as dag:
+    config = Variable.get("aws", deserialize_json=True)
+    target_arn = config["sns"]["topic_arn"]
     publish = SnsPublishOperator(
         task_id="publish_test_topic",
-        target_arn=config["topic_arn"],
+        target_arn=target_arn,
         message="TEST",
     )
