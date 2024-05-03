@@ -1,3 +1,5 @@
 {
-  "webhook_url": "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+  "slack": {
+    "webhook_url": "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+  }
 }
