@@ -102,6 +102,11 @@ services:
     restart: always
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   redis:
     image: redis:latest
@@ -116,6 +121,11 @@ services:
     restart: always
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   airflow-webserver:
     <<: *airflow-common
@@ -135,6 +145,11 @@ services:
         condition: service_completed_successfully
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   airflow-scheduler:
     <<: *airflow-common
@@ -152,6 +167,11 @@ services:
         condition: service_completed_successfully
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   airflow-worker:
     <<: *airflow-common
@@ -177,6 +197,11 @@ services:
         condition: service_completed_successfully
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   airflow-triggerer:
     <<: *airflow-common
@@ -194,6 +219,11 @@ services:
         condition: service_completed_successfully
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   airflow-init:
     <<: *airflow-common
@@ -260,6 +290,11 @@ services:
       - ${AIRFLOW_PROJ_DIR:-.}:/sources
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   airflow-cli:
     <<: *airflow-common
@@ -275,6 +310,11 @@ services:
       - airflow
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
   # You can enable flower by adding "--profile flower" option e.g. docker-compose --profile flower up
   # or by explicitly targeted on the command line e.g. docker-compose up flower.
@@ -299,6 +339,11 @@ services:
         condition: service_completed_successfully
     networks:
       - airflow-default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
 
 networks:
   airflow-default:
