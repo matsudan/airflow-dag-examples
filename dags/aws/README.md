@@ -8,17 +8,10 @@ docker compose -f docker-compose.localstack.yaml up -d
 
 ### LocalStack
 
-- Create S3 bucket
+The following resources are created when starting LocalStack.
 
-```shell
-aws --endpoint-url=http://localhost:4566 s3 mb s3://<bucket>
-```
-
-- Create SNS topic
-
-```shell
-aws --endpoint-url=http://localhost:4566 sns create-topic --name <topic>
-```
+- S3 bucket name: `sample-bucket`
+- SNS topic name: `sample-topic`
 
 ### Airflow
 
@@ -26,15 +19,32 @@ aws --endpoint-url=http://localhost:4566 sns create-topic --name <topic>
 
 - [aws](../../config/aws.json)
 
+```shell
+docker compose run --rm airflow-cli variables import config/aws.json
+```
+
 #### Connection
 
 - aws_default
 
-| Command               | Description                                                                                                                                                             |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Connection Id         | aws_default                                                                                                                                                             |
-| Connection Type       | Amazon Web Service                                                                                                                                                      |
-| Description           |                                                                                                                                                                         |
-| AWS Access Key ID     |                                                                                                                                                                         |
-| AWS Secret Access Key |                                                                                                                                                                         |
-| Extra                 | {"aws_access_key_id": "YOUR_AWS_ACCESS_KEY", "aws_secret_access_key": "YOUR_SECRET_ACCESS_KEY", "region_name": "YOUR_REGION", "endpoint_url": "http://localstack:4566"} |
+| Command               | Description                                                                                                                                 |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Connection Id         | aws_default                                                                                                                                 |
+| Connection Type       | Amazon Web Services                                                                                                                         |
+| Description           |                                                                                                                                             |
+| AWS Access Key ID     |                                                                                                                                             |
+| AWS Secret Access Key |                                                                                                                                             |
+| Extra                 | {"aws_access_key_id": "dummy", "aws_secret_access_key": "dummy", "region_name": "ap-northeast-1", "endpoint_url": "http://localstack:4566"} |
+
+```shell
+docker compose run --rm airflow-cli connections add 'aws_default' \
+    --conn-json '{
+      "conn_type": "Amazon Web Services",
+      "extra": {
+        "aws_access_key_id": "dummy",
+        "aws_secret_access_key": "dummy",
+        "region_name": "ap-northeast-1",
+        "endpoint_url": "http://localstack:4566"
+      }
+    }'
+```
