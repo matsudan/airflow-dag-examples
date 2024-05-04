@@ -1,10 +1,10 @@
 {
   "aws": {
     "sns": {
-      "topic_arn": "YOUR_TOPIC_ARN"
+      "topic_arn": "arn:aws:sns:ap-northeast-1:000000000000:sample-topic"
     },
     "s3": {
-      "bucket_name": "YOUR_BUCKET_NAME"
+      "bucket_name": "sample-bucket"
     }
   }
 }
