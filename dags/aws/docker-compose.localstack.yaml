@@ -16,8 +16,6 @@ services:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - ./init_localstack.sh:/etc/localstack/init/ready.d/init_localstack.sh
-    networks:
-      - airflow-default
     logging:
       driver: json-file
       options:
@@ -25,5 +23,6 @@ services:
         max-size: 3m
 
 networks:
-  airflow-default:
+  default:
+    name: airflow-default
     external: true
