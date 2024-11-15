@@ -24,10 +24,10 @@ from airflow.operators.empty import EmptyOperator
 example_dataset = Dataset("s3://dataset/example.csv")
 
 with DAG(
-    dag_id="example_producer",
+    dag_id="example_dataset_producer",
     start_date=pendulum.datetime(2023, 3, 1, tz="UTC"),
-    schedule_interval=None,
-    tags=["example"],
+    schedule=None,
+    tags=["dataset"],
 ):
     # `example_dataset` may be updated by this upstream producer task.
     t1 = EmptyOperator(
@@ -35,7 +35,7 @@ with DAG(
         outlets=[example_dataset],
     )
 
-    # `example_consumer` DAG is executed before this `wait` task is completed.
+    # `example_dataset_consumer` DAG is executed before this `wait` task is completed.
     t2 = BashOperator(
         task_id="wait",
         bash_command="sleep 10",
@@ -44,13 +44,13 @@ with DAG(
     t1 >> t2
 
 
-# This DAG is triggered when `producer` task of `example_producer` DAG is completed successfully.
+# This DAG is triggered when `producer` task of `example_dataset_producer` DAG is completed successfully.
 with DAG(
-    dag_id="example_consumer",
+    dag_id="example_dataset_consumer",
     start_date=pendulum.datetime(2023, 3, 1, tz="UTC"),
     schedule=[
         example_dataset
     ],  # DAG can also require multiple datasets. e.g., [dataset1, dataset2]
-    tags=["example"],
+    tags=["dataset"],
 ):
     EmptyOperator(task_id="consumer")
