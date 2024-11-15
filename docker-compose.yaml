@@ -24,7 +24,7 @@
 # The following variables are supported:
 #
 # AIRFLOW_IMAGE_NAME           - Docker image name used to run Airflow.
-#                                Default: apache/airflow:2.9.0
+#                                Default: apache/airflow:2.10.3
 # AIRFLOW_UID                  - User ID in Airflow containers
 #                                Default: 50000
 # AIRFLOW_PROJ_DIR             - Base path to which all the files will be volumed.
@@ -49,7 +49,7 @@ x-airflow-common:
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.9.0}
+  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.10.3}
   # build: .
   environment:
     &airflow-common-env
@@ -100,16 +100,11 @@ services:
       retries: 5
       start_period: 5s
     restart: always
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
   redis:
-    image: redis:latest
+    # Redis is limited to 7.2-bookworm due to licencing change
+    # https://redis.io/blog/redis-adopts-dual-source-available-licensing/
+    image: redis:7.2-bookworm
     expose:
       - 6379
     healthcheck:
@@ -119,8 +114,6 @@ services:
       retries: 50
       start_period: 30s
     restart: always
-    networks:
-      - airflow-default
     logging:
       driver: json-file
       options:
@@ -143,13 +136,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
   airflow-scheduler:
     <<: *airflow-common
@@ -165,13 +151,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
   airflow-worker:
     <<: *airflow-common
@@ -195,13 +174,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
   airflow-triggerer:
     <<: *airflow-common
@@ -217,13 +189,6 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
   airflow-init:
     <<: *airflow-common
@@ -288,13 +253,6 @@ services:
     user: "0:0"
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}:/sources
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
   airflow-cli:
     <<: *airflow-common
@@ -308,13 +266,6 @@ services:
       - bash
       - -c
       - airflow
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
   # You can enable flower by adding "--profile flower" option e.g. docker-compose --profile flower up
   # or by explicitly targeted on the command line e.g. docker-compose up flower.
@@ -337,16 +288,10 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    networks:
-      - airflow-default
-    logging:
-      driver: json-file
-      options:
-        max-file: '1'
-        max-size: 3m
 
 networks:
-  airflow-default:
+  default:
+    name: airflow-default
     external: true
 
 volumes:
