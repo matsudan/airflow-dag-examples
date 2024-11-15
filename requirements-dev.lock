@@ -6,6 +6,8 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
+#   generate-hashes: false
+#   universal: false
 
 -e file:.
 aiofiles==23.2.1
@@ -23,9 +25,10 @@ annotated-types==0.6.0
     # via pydantic
 anyio==4.3.0
     # via httpx
-apache-airflow==2.9.0
+apache-airflow==2.10.3
     # via airflow-dag-examples
     # via apache-airflow-providers-amazon
+    # via apache-airflow-providers-common-compat
     # via apache-airflow-providers-common-io
     # via apache-airflow-providers-common-sql
     # via apache-airflow-providers-fab
@@ -37,6 +40,9 @@ apache-airflow==2.9.0
     # via apache-airflow-providers-sqlite
 apache-airflow-providers-amazon==8.19.0
     # via airflow-dag-examples
+apache-airflow-providers-common-compat==1.2.1
+    # via apache-airflow
+    # via apache-airflow-providers-google
 apache-airflow-providers-common-io==1.3.1
     # via apache-airflow
 apache-airflow-providers-common-sql==1.12.0
@@ -48,7 +54,7 @@ apache-airflow-providers-fab==1.0.4
     # via apache-airflow
 apache-airflow-providers-ftp==3.8.0
     # via apache-airflow
-apache-airflow-providers-google==10.16.0
+apache-airflow-providers-google==10.25.0
     # via airflow-dag-examples
 apache-airflow-providers-http==4.10.1
     # via apache-airflow
@@ -121,7 +127,7 @@ clickclick==20.10.2
     # via connexion
 colorama==0.4.6
     # via flask-appbuilder
-colorlog==4.8.0
+colorlog==6.9.0
     # via apache-airflow
 configupdater==3.2
     # via apache-airflow
@@ -147,6 +153,7 @@ deprecated==1.2.14
     # via opentelemetry-exporter-otlp-proto-http
 dill==0.3.8
     # via apache-airflow
+    # via apache-airflow-providers-google
 dnspython==2.6.1
     # via email-validator
 docstring-parser==0.16
@@ -196,7 +203,7 @@ fsspec==2024.3.1
     # via gcsfs
     # via pyathena
     # via universal-pathlib
-gcloud-aio-auth==4.2.3
+gcloud-aio-auth==5.3.2
     # via apache-airflow-providers-google
     # via gcloud-aio-bigquery
     # via gcloud-aio-storage
@@ -206,11 +213,11 @@ gcloud-aio-storage==9.2.0
     # via apache-airflow-providers-google
 gcsfs==2024.3.1
     # via apache-airflow-providers-google
-google-ads==24.0.0
+google-ads==25.1.0
     # via apache-airflow-providers-google
 google-analytics-admin==0.22.7
     # via apache-airflow-providers-google
-google-api-core==2.18.0
+google-api-core==2.23.0
     # via apache-airflow-providers-google
     # via google-ads
     # via google-analytics-admin
@@ -316,7 +323,7 @@ google-auth-oauthlib==1.2.0
     # via google-ads
     # via pandas-gbq
     # via pydata-google-auth
-google-cloud-aiplatform==1.48.0
+google-cloud-aiplatform==1.72.0
     # via apache-airflow-providers-google
 google-cloud-appengine-logging==1.4.3
     # via google-cloud-logging
@@ -326,7 +333,8 @@ google-cloud-automl==2.13.3
     # via apache-airflow-providers-google
 google-cloud-batch==0.17.18
     # via apache-airflow-providers-google
-google-cloud-bigquery==3.21.0
+google-cloud-bigquery==3.27.0
+    # via apache-airflow-providers-google
     # via google-cloud-aiplatform
     # via pandas-gbq
     # via sqlalchemy-bigquery
@@ -355,7 +363,7 @@ google-cloud-dataform==0.5.9
     # via apache-airflow-providers-google
 google-cloud-dataplex==1.13.0
     # via apache-airflow-providers-google
-google-cloud-dataproc==5.9.3
+google-cloud-dataproc==5.15.1
     # via apache-airflow-providers-google
 google-cloud-dataproc-metastore==1.15.3
     # via apache-airflow-providers-google
@@ -477,6 +485,8 @@ idna==3.7
     # via httpx
     # via requests
     # via yarl
+immutabledict==4.2.0
+    # via apache-airflow-providers-google
 importlib-metadata==7.0.0
     # via opentelemetry-api
 importlib-resources==6.4.0
@@ -544,6 +554,8 @@ mdit-py-plugins==0.4.0
     # via apache-airflow
 mdurl==0.1.2
     # via markdown-it-py
+methodtools==0.4.7
+    # via apache-airflow
 more-itertools==10.2.0
     # via apache-airflow-providers-common-sql
 multidict==6.0.5
@@ -705,6 +717,7 @@ protobuf==4.25.3
 psutil==5.9.8
     # via apache-airflow
 pyarrow==16.0.0
+    # via apache-airflow-providers-google
     # via db-dtypes
     # via pandas-gbq
 pyasn1==0.5.1
@@ -750,6 +763,7 @@ python-nvd3==0.16.0
     # via apache-airflow
 python-slugify==8.0.4
     # via apache-airflow
+    # via apache-airflow-providers-google
     # via python-nvd3
 pytz==2024.1
     # via croniter
@@ -782,6 +796,7 @@ requests==2.31.0
 requests-oauthlib==2.0.0
     # via google-auth-oauthlib
 requests-toolbelt==1.0.0
+    # via apache-airflow
     # via apache-airflow-providers-http
 rfc3339-validator==0.1.4
     # via apache-airflow
@@ -805,7 +820,6 @@ scramp==1.4.5
 setproctitle==1.3.3
     # via apache-airflow
 setuptools==66.1.1
-    # via gcloud-aio-auth
     # via pandas-gbq
     # via pydata-google-auth
     # via python-daemon
@@ -816,6 +830,7 @@ six==1.16.0
     # via prison
     # via python-dateutil
     # via rfc3339-validator
+    # via wirerope
 sniffio==1.3.1
     # via anyio
     # via httpx
@@ -849,6 +864,7 @@ tabulate==0.9.0
     # via apache-airflow
 tenacity==8.2.3
     # via apache-airflow
+    # via apache-airflow-providers-google
     # via pyathena
 termcolor==2.4.0
     # via apache-airflow
@@ -869,8 +885,6 @@ tzdata==2024.1
     # via pendulum
 uc-micro-py==1.0.3
     # via linkify-it-py
-unicodecsv==0.14.1
-    # via apache-airflow
 universal-pathlib==0.2.2
     # via apache-airflow
 uritemplate==4.1.1
@@ -887,6 +901,8 @@ werkzeug==2.2.3
     # via flask-appbuilder
     # via flask-jwt-extended
     # via flask-login
+wirerope==0.4.8
+    # via methodtools
 wrapt==1.16.0
     # via deprecated
 wtforms==3.1.2
