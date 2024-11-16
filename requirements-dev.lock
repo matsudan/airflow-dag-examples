@@ -812,7 +812,7 @@ rpds-py==0.18.0
 rsa==4.9
     # via gcloud-aio-storage
     # via google-auth
-ruff==0.4.2
+ruff==0.7.4
 s3transfer==0.10.1
     # via boto3
 scramp==1.4.5
