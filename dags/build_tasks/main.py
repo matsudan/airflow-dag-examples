@@ -32,7 +32,7 @@ with DAG(
     dag_id="build_tasks_main",
     start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
     default_args=default_args,
-    schedule_interval="@once",
+    schedule="@once",
     tags=["example"],
 ) as dag:
     start = EmptyOperator(task_id="start")

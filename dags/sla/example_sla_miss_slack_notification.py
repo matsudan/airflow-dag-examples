@@ -25,7 +25,7 @@ from libs.slack import post_sla_miss_to_slack
 
 @dag(
     start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
-    schedule_interval="*/2 * * * *",
+    schedule="*/2 * * * *",
     catchup=False,
     sla_miss_callback=post_sla_miss_to_slack,
     tags=["example"],

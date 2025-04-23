@@ -31,7 +31,7 @@ default_args = {
 with DAG(
     dag_id=dag_id,
     default_args=default_args,
-    schedule_interval=None,
+    schedule=None,
 ) as dag:
     config = Variable.get("aws", deserialize_json=True)
     target_arn = config["sns"]["topic_arn"]

@@ -28,7 +28,7 @@ from airflow.utils.session import provide_session
 with DAG(
     dag_id="example_external_task_sensor",
     start_date=pendulum.datetime(2023, 8, 1, tz="UTC"),
-    schedule_interval=None,
+    schedule=None,
     catchup=False,
     tags=["example"],
 ):
@@ -64,7 +64,7 @@ with DAG(
 with DAG(
     dag_id="example_external_task_sensor_target",
     start_date=pendulum.datetime(2023, 8, 1, tz="UTC"),
-    schedule_interval=None,
+    schedule=None,
     catchup=False,
     tags=["example"],
 ):

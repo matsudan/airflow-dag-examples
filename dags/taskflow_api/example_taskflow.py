@@ -24,7 +24,7 @@ from airflow.decorators import dag, task
 
 # 1. Define a dag using the @dag decorator
 @dag(
-    schedule_interval=None,
+    schedule=None,
     start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
     tags=["example"],
 )

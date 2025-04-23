@@ -27,7 +27,7 @@ dag_id = os.path.basename(__file__).replace(".py", "")
 with DAG(
     dag_id=dag_id,
     start_date=pendulum.datetime(2022, 5, 1, tz="UTC"),
-    schedule_interval=None,
+    schedule=None,
     tags=["example"],
 ) as dag:
     start = EmptyOperator(task_id="start")
