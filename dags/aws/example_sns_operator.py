@@ -16,22 +16,22 @@
 # under the License.
 import os
 
+import pendulum
 from airflow import DAG
 from airflow.models import Variable
 from airflow.providers.amazon.aws.operators.sns import SnsPublishOperator
-from airflow.utils.dates import days_ago
 
 dag_id = os.path.basename(__file__).replace(".py", "")
 
 default_args = {
     "owner": "example",
-    "start_date": days_ago(2),
 }
 
 with DAG(
     dag_id=dag_id,
     default_args=default_args,
     schedule=None,
+    start_date=pendulum.datetime(2024, 11, 1, tz="UTC"),
 ) as dag:
     config = Variable.get("aws", deserialize_json=True)
     target_arn = config["sns"]["topic_arn"]
