@@ -6,9 +6,9 @@ authors = [
     { name = "matsuda", email = "daaamatsun@gmail.com" }
 ]
 dependencies = [
-    "apache-airflow>=2.10.3",
-    "apache-airflow-providers-google==10.25.0",
-    "apache-airflow-providers-amazon==8.19.0",
+    "apache-airflow>=3.0.0",
+    "apache-airflow-providers-google==15.1.0",
+    "apache-airflow-providers-amazon==9.6.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"
