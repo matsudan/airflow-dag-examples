@@ -1,0 +1,18 @@
+airflow-dag-examples
+Copyright 2020 Naoki Matsuda
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+
+--------------------------------------------------------------------------------
+Third-party files
+--------------------------------------------------------------------------------
+
+The following file is redistributed unmodified from Apache Airflow 3.3.0,
+licensed under the Apache License, Version 2.0:
+
+  docker-compose.yaml
+    https://airflow.apache.org/docs/apache-airflow/3.3.0/docker-compose.yaml
+
+Apache Airflow
+Copyright 2016-2026 The Apache Software Foundation
