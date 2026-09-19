@@ -6,7 +6,7 @@ authors = [
     { name = "matsuda", email = "daaamatsun@gmail.com" }
 ]
 dependencies = [
-    "apache-airflow-providers-amazon==9.12",
+    "apache-airflow-providers-amazon==9.28.0",
     "apache-airflow==3.3.0",
 ]
 readme = "README.md"
