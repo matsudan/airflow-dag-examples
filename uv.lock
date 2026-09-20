@@ -176,7 +176,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "apache-airflow", specifier = "==3.3.0" },
-    { name = "apache-airflow-providers-amazon", specifier = "==9.12" },
+    { name = "apache-airflow-providers-amazon", specifier = "==9.28.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -320,7 +320,7 @@ wheels = [
 
 [[package]]
 name = "apache-airflow-providers-amazon"
-version = "9.12.0"
+version = "9.28.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "apache-airflow" },
@@ -340,9 +340,9 @@ dependencies = [
     { name = "sagemaker-studio" },
     { name = "watchtower" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b9/bc/3e1ac6e17754753e907920f0a85b13e78f372a5726f2b1667de3690788cc/apache_airflow_providers_amazon-9.12.0.tar.gz", hash = "sha256:5706e096555796129f615d342ef5c90599cb4dbb9a1bad2f04b8867c4c883a3f", size = 2012841, upload-time = "2025-08-11T05:34:25.732Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/38/c5/88aaca2dad73be874672d5f7b67d77d67518fb59594a6138ea0de27c40a6/apache_airflow_providers_amazon-9.28.0.tar.gz", hash = "sha256:c24436a2be029739c523965ae65d18e2a5c64380f5f78c6b9389f5eae155eab7", size = 2174703, upload-time = "2026-05-11T15:44:48.546Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/95/c0/683df3d814f0ec3e71d20273c29c004e282aa2f4cbf9a44e4a347df42e8a/apache_airflow_providers_amazon-9.12.0-py3-none-any.whl", hash = "sha256:6c889e65d1be62848a361af64aac797571795261fd0eebcbfe9c844dab7705f3", size = 666761, upload-time = "2025-08-11T05:33:45.518Z" },
+    { url = "https://files.pythonhosted.org/packages/3e/be/34941f3b48c03cdb430412a2131455869e30dbd0d7c0f33cb6feebf73880/apache_airflow_providers_amazon-9.28.0-py3-none-any.whl", hash = "sha256:4a44749fefec9131b6b8c0979f574d573e6c965ad07b4801a83558bb78b15100", size = 730746, upload-time = "2026-05-11T15:44:24.257Z" },
 ]
 
 [[package]]
@@ -2367,7 +2367,7 @@ wheels = [
 
 [[package]]
 name = "sagemaker-studio"
-version = "1.0.13"
+version = "1.0.27"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "boto3" },
@@ -2379,9 +2379,9 @@ dependencies = [
     { name = "setuptools" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/69/3f/e089e4a42a2c8e995e01bd7ea36f719d15fc3c199f0e663c7311f2f955e9/sagemaker_studio-1.0.13.tar.gz", hash = "sha256:62af8478e825068960badcb959ec05a3abd537e8449e74dda75e82df7c41fddd", size = 493849, upload-time = "2025-04-21T13:48:27.733Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/06/9c/d9b338ffe5371611b4bc5bcc1da80559a8c163599b329fb3562bf3c1c728/sagemaker_studio-1.0.27.tar.gz", hash = "sha256:2fcc67478f800e427fe8db0e0273e0cf3bb6de4a58977ff953cbf14cc6575afe", size = 534347, upload-time = "2026-08-07T19:21:27.399Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/2c/a987262f23d5c6ce749cde475a3d01a2a11076c4bbcca17f6bb7408bd376/sagemaker_studio-1.0.13-py3-none-any.whl", hash = "sha256:35bd4c4d85ff4b2a064c1dfcf5dddeaa05224ecbafb0a982cc7cfc354d989b75", size = 284531, upload-time = "2025-04-21T13:48:25.717Z" },
+    { url = "https://files.pythonhosted.org/packages/06/00/5e4c95554140e98d6a5a50604505be84a89540acc95ad1797edf0221c905/sagemaker_studio-1.0.27-py3-none-any.whl", hash = "sha256:94440d7312230e219d9eed439930fa4d515bf68647bcb8c00e84918fd7db1cdf", size = 307955, upload-time = "2026-08-07T19:21:25.829Z" },
 ]
 
 [[package]]
