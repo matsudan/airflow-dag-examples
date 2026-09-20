@@ -7,7 +7,7 @@ authors = [
 ]
 dependencies = [
     "apache-airflow-providers-amazon==9.28.0",
-    "apache-airflow==3.3.0",
+    "apache-airflow==3.3.2",
 ]
 readme = "README.md"
 requires-python = ">= 3.12"
